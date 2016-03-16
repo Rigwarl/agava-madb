@@ -40,7 +40,7 @@ module.exports = grunt => {
         livereload: true,
       },
       js: {
-        files: ['app/js/es6/*.js'],
+        files: ['app/js/es6/**/*.js'],
         tasks: ['browserify'],
       },
       all: {
