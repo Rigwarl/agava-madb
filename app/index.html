@@ -5,9 +5,26 @@
   <title>Agava Madness</title>
 
   <script src="//localhost:35729/livereload.js"></script>
+
+  <style>
+    @font-face {
+        font-family: 'Kremlin';
+        src: url('../font/KREMLIN_nuovo.ttf');
+    }
+    *{
+      margin: 0;
+      padding: 0;
+    }
+
+    .game-canvas{
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
 </head>
 <body>
-  <canvas id="game-stage">
+  <canvas id="game-stage" width="800" height="600" class="game-canvas">
     Sorry, but your browser dosnt support this game!
   </canvas>
 
