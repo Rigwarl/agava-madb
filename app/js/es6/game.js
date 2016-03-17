@@ -1,4 +1,5 @@
 import AgavaStage from './elements/agava_stage.js';
+import Timer from './elements/timer.js';
 import Score from './elements/score.js';
 import Hat from './elements/hat.js';
 import Bg from './elements/background.js';
@@ -20,8 +21,10 @@ export default {
     this.createAgavas();
     this.createHat();
     this.createScore();
+    this.createTimer();
 
     this.scoreVal = 0;
+    this.time = config.time;
   },
   createBg() {
     this.bg = new Bg(this.queue);
@@ -36,6 +39,15 @@ export default {
     this.hat.addTo(this.stage);
     this.stage.addEventListener('stagemousemove', e => this.hat.move(e.stageX));
   },
+  createTimer() {
+    this.timer = new Timer(config);
+    this.timer.addTo(this.stage);
+
+    setInterval(() => {
+      this.timer.setValue(--this.time);
+      if (!this.time) this.loose();
+    }, 1000);
+  },
   createAgavas() {
     this.agavaStage = new AgavaStage(this.queue, config);
     this.agavaStage.addTo(this.stage);
@@ -46,7 +58,6 @@ export default {
   catchCheck(agava) {
     if (agava.el.currentFrame === 32) {
       const agavaX = this.agavaStage.el.localToGlobal(agava.el.x, 0).x;
-      console.log(this.hat.bounds.width);
 
       if (agavaX > this.hat.el.x - this.hat.realWidth / 2 &&
           agavaX < this.hat.el.x + this.hat.realWidth / 2) {
@@ -57,13 +68,18 @@ export default {
     }
   },
   addScore() {
-    this.score.setValue(this.scoreVal++);
-    if (this.scoreVal > config.toCatch) this.win();
+    this.score.setValue(++this.scoreVal);
+    if (this.scoreVal === config.toCatch) this.win();
   },
   win() {
-
+    console.log('win');
+    this.reset();
   },
   loose() {
-
+    console.log('loose');
+    this.reset();
+  },
+  reset() {
+    this.agavaStage.remove();
   },
 };
