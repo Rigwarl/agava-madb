@@ -5,12 +5,10 @@ export default class {
     this.gb = bounds;
   }
   addTo(parent) {
-    this.parent = parent;
     parent.addChild(this.el);
   }
-  remove() {
-    this.parent.removeChild(this.el);
-    this.parent = null;
+  removeFrom(parent) {
+    parent.removeChild(this.el);
   }
   addToResize() {
     this.resize = this.set.bind(this); // завяжутся ли ссылки друг на друга?
