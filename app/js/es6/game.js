@@ -1,6 +1,7 @@
 import AgavaStage from './elements/agava_stage.js';
-import Bg from './elements/background.js';
+import Score from './elements/score.js';
 import Hat from './elements/hat.js';
+import Bg from './elements/background.js';
 
 const config = {
   toCatch: 40,
@@ -15,11 +16,20 @@ export default {
     this.stage = stage;
     this.stage.cursor = 'none';
 
-    const bg = new Bg(queue);
-    bg.addTo(stage);
-
+    this.createBg();
     this.createAgavas();
     this.createHat();
+    this.createScore();
+
+    this.scoreVal = 0;
+  },
+  createBg() {
+    this.bg = new Bg(this.queue);
+    this.bg.addTo(this.stage);
+  },
+  createScore() {
+    this.score = new Score(config);
+    this.score.addTo(this.stage);
   },
   createHat() {
     this.hat = new Hat(this.queue);
@@ -36,11 +46,24 @@ export default {
   catchCheck(agava) {
     if (agava.el.currentFrame === 32) {
       const agavaX = this.agavaStage.el.localToGlobal(agava.el.x, 0).x;
+      console.log(this.hat.bounds.width);
 
-      if (agavaX > this.hat.el.x - this.hat.bounds.width / 2 &&
-          agavaX < this.hat.el.x + this.hat.bounds.width / 2) {
+      if (agavaX > this.hat.el.x - this.hat.realWidth / 2 &&
+          agavaX < this.hat.el.x + this.hat.realWidth / 2) {
         this.hat.catch();
+        agava.set();
+        this.addScore();
       }
     }
+  },
+  addScore() {
+    this.score.setValue(this.scoreVal++);
+    if (this.scoreVal > config.toCatch) this.win();
+  },
+  win() {
+
+  },
+  loose() {
+
   },
 };
