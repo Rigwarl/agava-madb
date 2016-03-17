@@ -17,6 +17,7 @@ export default class extends Element {
       scaleX: this.gb.scaleMin,
       scaleY: this.gb.scaleMin,
     });
+    this.realWidth = this.bounds.width * this.gb.scaleMin;
   }
   move(x) {
     this.el.x = x;

@@ -12,9 +12,8 @@ export default class extends Element {
     this.addToResize();
   }
   set() {
-    const offsetY = this.gb.wh - this.gb.ch * this.gb.scaleY;
     this.el.set({
-      y: offsetY,
+      y: this.gb.wh - this.gb.ch * this.gb.scaleMin,
       x: this.gb.ww / 2,
       regX: this.gb.cw / 2,
       scaleX: this.gb.scaleMin,
