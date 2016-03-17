@@ -10,6 +10,7 @@ export default class {
   }
   remove() {
     this.parent.removeChild(this.el);
+    this.parent = null;
     if (this.resize) this.removeFromResize();
   }
   addToResize() {
@@ -18,5 +19,6 @@ export default class {
   }
   removeFromResize() {
     bounds.toResize.delete(this.resize);
+    this.resize = null;
   }
 }
