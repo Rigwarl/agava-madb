@@ -13,6 +13,7 @@ export default {
   init({ queue, stage }) {
     this.queue = queue;
     this.stage = stage;
+    this.stage.cursor = 'none';
 
     const bg = new Bg(queue);
     bg.addTo(stage);

@@ -27,6 +27,7 @@ const app = {
     });
 
     this.setTicker();
+    this.setEvents();
   },
   setTicker() {
     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
@@ -35,6 +36,9 @@ const app = {
       bounds.resize();
       this.stage.update();
     });
+  },
+  setEvents() {
+    this.stage.enableMouseOver(20);
   },
 };
 
