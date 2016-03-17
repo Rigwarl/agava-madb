@@ -11,7 +11,6 @@ export default class {
   remove() {
     this.parent.removeChild(this.el);
     this.parent = null;
-    if (this.resize) this.removeFromResize();
   }
   addToResize() {
     this.resize = this.set.bind(this); // завяжутся ли ссылки друг на друга?
