@@ -22,7 +22,7 @@ const app = {
     ], {
       progress: progress.change.bind(progress), // удалится ли прогресс?
     }).then(queue => {
-      progress.remove();
+      progress.removeFrom(this.stage);
       game.init({ queue, stage: this.stage });
     });
 

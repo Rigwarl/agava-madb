@@ -33,4 +33,23 @@ export default class extends Element {
         scaleY: this.gb.scaleMin,
       }, 85);
   }
+  hide(result) {
+    const params = {
+      win: {
+        scaleY: 0.8,
+        y: this.gb.wh + this.bounds.height,
+      },
+      loose: {
+        scaleY: 0.1,
+        y: this.gb.wh + 25,
+      },
+    };
+
+    return new Promise(resolve => {
+      createjs.Tween.get(this.el, { override: true })
+        .to(params[result], 500)
+        .wait(4000)
+        .call(resolve);
+    });
+  }
 }

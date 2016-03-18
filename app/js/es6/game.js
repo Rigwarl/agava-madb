@@ -1,4 +1,5 @@
 import AgavaStage from './elements/agava_stage.js';
+import EndText from './elements/endText.js';
 import Timer from './elements/timer.js';
 import Score from './elements/score.js';
 import Hat from './elements/hat.js';
@@ -23,6 +24,8 @@ export default {
     this.createScore();
     this.createTimer();
 
+    this.endText = new EndText();
+
     this.scoreVal = 0;
     this.time = config.time;
   },
@@ -45,7 +48,7 @@ export default {
 
     setInterval(() => {
       this.timer.setValue(--this.time);
-      if (!this.time) this.loose();
+      if (!this.time && !this.ended) this.end('win');
     }, 1000);
   },
   createAgavas() {
@@ -56,7 +59,7 @@ export default {
     });
   },
   catchCheck(agava) {
-    if (agava.el.currentFrame === 32) {
+    if (agava.el.currentFrame === 32 && !this.ended) {
       const agavaX = this.agavaStage.el.localToGlobal(agava.el.x, 0).x;
 
       if (agavaX > this.hat.el.x - this.hat.realWidth / 2 &&
@@ -69,17 +72,17 @@ export default {
   },
   addScore() {
     this.score.setValue(++this.scoreVal);
-    if (this.scoreVal === config.toCatch) this.win();
+    if (this.scoreVal === config.toCatch) this.end('win');
   },
-  win() {
-    console.log('win');
-    this.reset();
-  },
-  loose() {
-    console.log('loose');
-    this.reset();
-  },
-  reset() {
-    this.agavaStage.remove();
+  end(result) {
+    this.ended = true;
+    this.stage.removeChild(this.timer.el);
+
+    this.endText.addTo(this.stage);
+    this.endText.show(result);
+
+    this.hat.hide(result).then(() => {
+      this.stage.removeChild(this.agavaStage.el, this.score.el, this.hat.el, this.endText);
+    });
   },
 };
