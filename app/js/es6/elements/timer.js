@@ -1,10 +1,9 @@
 import Element from './element.js';
 
 export default class extends Element {
-  constructor(config) {
+  constructor() {
     super();
     this.el = new createjs.Text('', '35px Kremlin', '#303030');
-    this.setValue(config.time);
     this.set();
     this.addToResize();
   }

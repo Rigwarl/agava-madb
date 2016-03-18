@@ -1,7 +1,8 @@
-export default (manifest, params) => new Promise((resolve, reject) => {
+export default (manifest, { progress, type }) => new Promise((resolve, reject) => {
   const queue = new createjs.LoadQueue();
 
-  if (params.progress) queue.addEventListener('progress', params.progress);
+  if (type === 'sound') queue.installPlugin(createjs.Sound);
+  if (progress) queue.addEventListener('progress', progress);
 
   queue.addEventListener('complete', () => resolve(queue));
   queue.addEventListener('error', reject);

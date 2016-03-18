@@ -6,8 +6,6 @@ export default class extends Element {
     this.config = config;
     this.el = new createjs.Sprite(sprite);
     this.bounds = this.el.getBounds();
-    this.frames = sprite.getNumFrames();
-    this.set();
     this.bindEvents();
   }
   set() {

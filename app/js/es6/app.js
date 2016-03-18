@@ -24,10 +24,19 @@ const app = {
     }).then(queue => {
       progress.removeFrom(this.stage);
       game.init({ queue, stage: this.stage });
+      this.loadSound();
     });
 
     this.setTicker();
     this.setEvents();
+  },
+  loadSound() {
+    load([
+      { id: 'catch', src: 'sound/catch.wav' },
+      { id: 'win', src: 'sound/win.mp3' },
+      { id: 'loose', src: 'sound/loose.mp3' },
+      { id: 'click', src: 'sound/click.mp3' },
+    ], { type: 'sound' }).then(() => game.initSound());
   },
   setTicker() {
     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
@@ -43,12 +52,3 @@ const app = {
 };
 
 app.init();
-
-  // ss: {
-  //   sound: [
-  //     { id: 'catch', src: 'sound/catch.wav' },
-  //     { id: 'win', src: 'sound/win.mp3' },
-  //     { id: 'loose', src: 'sound/loose.mp3' },
-  //     { id: 'click', src: 'sound/click.mp3' },
-  //   ],
-  // },
