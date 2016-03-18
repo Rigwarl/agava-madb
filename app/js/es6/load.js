@@ -1,4 +1,4 @@
-export default (manifest, { progress, type }) => new Promise((resolve, reject) => {
+export default (manifest, { progress, type } = {}) => new Promise((resolve, reject) => {
   const queue = new createjs.LoadQueue();
 
   if (type === 'sound') queue.installPlugin(createjs.Sound);

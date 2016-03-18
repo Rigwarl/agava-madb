@@ -26,6 +26,15 @@ export default {
     this.createAgavas();
     this.createHat();
     this.createPlayBtn();
+  },
+  start() {
+    this.bg.el.alpha = 0;
+    this.playBtn.el.alpha = 0;
+
+    createjs.Tween.get(this.bg.el)
+      .to({ alpha: 1 }, 500);
+    createjs.Tween.get(this.playBtn.el)
+      .to({ alpha: 1 }, 500);
 
     this.stage.addChild(this.bg.el, this.playBtn.el);
   },
@@ -35,15 +44,18 @@ export default {
   playSound(sound) {
     if (this.soundReady) createjs.Sound.play(sound);
   },
-  start() {
+  play() {
     this.playing = true;
     this.stage.cursor = 'none';
     this.scoreVal = 0;
     this.time = config.time;
     this.timer.setValue(this.time);
-
     this.initTimer();
-    this.agavaStage.agavas.forEach(agava => agava.set());
+
+    // иначе летят все сразу на слоу девайсах
+    setTimeout(() => {
+      this.agavaStage.agavas.forEach(agava => agava.set());
+    }, 0);
 
     this.playBtn.removeFrom(this.stage);
     this.stage.addChild(this.agavaStage.el, this.hat.el, this.timer.el, this.score.el);
@@ -52,7 +64,7 @@ export default {
     this.playBtn = new PlayBtn(this.queue);
     this.playBtn.el.addEventListener('click', () => {
       this.playSound('click');
-      this.start();
+      this.play();
     });
   },
   createHat() {
