@@ -30,6 +30,8 @@ export default {
       this.canvas.width = this.ww;
       this.canvas.height = this.wh;
       this.toResize.forEach(item => item());
+
+      window.scrollTo(0, 0);
       this.resizeFlag = false;
     }
   },
