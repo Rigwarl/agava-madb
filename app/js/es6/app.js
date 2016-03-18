@@ -48,6 +48,7 @@ const app = {
   },
   setEvents() {
     this.stage.enableMouseOver(20);
+    createjs.Touch.enable(this.stage);
   },
 };
 
