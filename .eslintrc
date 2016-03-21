@@ -1,0 +1,14 @@
+{
+    "extends": "airbnb/base",
+    "globals": {
+        "createjs": false,
+    },
+    "rules": {
+      "func-names": 0,
+      "no-param-reassign": 0,
+      "guard-for-in": 1,
+      "max-len": 1,
+      "no-use-before-define": [2, "nofunc"],
+      "id-length": [2, {"exceptions": ["e", "i", "j", "x", "y", "w", "h"]}],
+    },
+}
