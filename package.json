@@ -1,13 +1,13 @@
 {
   "name": "agava-madness",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "hat game",
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "babel-eslint": "^5.0.0",
     "eslint": "^2.3.0",
-    "eslint-config-airbnb": "^6.1.0",
+    "eslint-config-airbnb-base": "^1.0.3",
+    "eslint-plugin-import": "^1.6.0",
     "grunt-contrib-connect": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-notify": "^0.4.1",
@@ -17,10 +17,9 @@
     "babel-polyfill": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babelify": "^7.2.0",
-    "grunt": "^0.4.5",
+    "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "screenfull": "^3.0.0"
+    "grunt-contrib-copy": "^1.0.0"
   }
 }
